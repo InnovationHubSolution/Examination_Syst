@@ -140,9 +140,14 @@ const Register = () => {
                                     name="role"
                                     value={formData.role}
                                     onChange={handleChange}
+                                    helperText="Select your role in the system"
                                 >
                                     <MenuItem value="student">Student</MenuItem>
                                     <MenuItem value="teacher">Teacher</MenuItem>
+                                    <MenuItem value="examiner">Examiner</MenuItem>
+                                    <MenuItem value="moderator">Moderator</MenuItem>
+                                    <MenuItem value="school_admin">School Administrator</MenuItem>
+                                    <MenuItem value="provincial_officer">Provincial Officer</MenuItem>
                                 </TextField>
                             </Grid>
                             {formData.role === 'student' && (

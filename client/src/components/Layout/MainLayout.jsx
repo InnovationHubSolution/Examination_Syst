@@ -16,7 +16,8 @@ import {
     Menu,
     MenuItem,
     Badge,
-    Divider
+    Divider,
+    Chip
 } from '@mui/material';
 import {
     Menu as MenuIcon,
@@ -107,11 +108,26 @@ const MainLayout = () => {
 
     const drawer = (
         <Box>
-            <Toolbar>
-                <Typography variant="h6" noWrap component="div">
+            <Toolbar sx={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' }}>
+                <Typography variant="h6" noWrap component="div" sx={{ color: 'white', fontWeight: 'bold' }}>
                     VU Exam Portal
                 </Typography>
             </Toolbar>
+            <Box sx={{ p: 2, bgcolor: 'grey.50' }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
+                    <Avatar sx={{ width: 32, height: 32, bgcolor: 'primary.main' }}>
+                        {user?.firstName?.charAt(0)}
+                    </Avatar>
+                    <Box>
+                        <Typography variant="body2" fontWeight="bold">
+                            {user?.firstName} {user?.lastName}
+                        </Typography>
+                        <Typography variant="caption" color="text.secondary" sx={{ textTransform: 'capitalize' }}>
+                            {user?.role}
+                        </Typography>
+                    </Box>
+                </Box>
+            </Box>
             <Divider />
             <List>
                 {getMenuItems().map((item) => (
@@ -147,11 +163,22 @@ const MainLayout = () => {
                     <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
                         Vanuatu Examination & Assessment Portal
                     </Typography>
-                    <IconButton color="inherit">
-                        <Badge badgeContent={0} color="error">
+                    <Badge badgeContent={0} color="error" sx={{ mr: 2 }}>
+                        <IconButton color="inherit">
                             <NotificationsIcon />
-                        </Badge>
-                    </IconButton>
+                        </IconButton>
+                    </Badge>
+                    <Chip
+                        label={user?.role}
+                        size="small"
+                        sx={{
+                            mr: 2,
+                            bgcolor: user?.role === 'administrator' ? 'error.main' : user?.role === 'teacher' ? 'success.main' : 'primary.main',
+                            color: 'white',
+                            fontWeight: 'bold',
+                            textTransform: 'capitalize'
+                        }}
+                    />
                     <IconButton onClick={handleProfileMenuOpen} color="inherit">
                         <Avatar sx={{ width: 32, height: 32 }}>
                             {user?.firstName?.charAt(0)}
