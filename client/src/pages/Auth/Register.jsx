@@ -55,10 +55,10 @@ const Register = () => {
         setLoading(true);
 
         const { confirmPassword, ...registerData } = formData;
-        const result = await register(registerData);
+        const result = await register(userData);
 
         if (result.success) {
-            navigate('/dashboard');
+            navigate('/app/dashboard');
         } else {
             setError(result.message);
         }

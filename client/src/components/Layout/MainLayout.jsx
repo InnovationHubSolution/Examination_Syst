@@ -65,32 +65,32 @@ const MainLayout = () => {
     // Menu items based on user role
     const getMenuItems = () => {
         const commonItems = [
-            { text: 'Dashboard', icon: <DashboardIcon />, path: '/dashboard' },
-            { text: 'Exam Timetable', icon: <EventNoteIcon />, path: '/exam-timetable' },
-            { text: 'Resource Library', icon: <LibraryBooksIcon />, path: '/resources' },
-            { text: 'Announcements', icon: <AnnouncementIcon />, path: '/announcements' }
+            { text: 'Dashboard', icon: <DashboardIcon />, path: '/app/dashboard' },
+            { text: 'Exam Timetable', icon: <EventNoteIcon />, path: '/app/exam-timetable' },
+            { text: 'Resource Library', icon: <LibraryBooksIcon />, path: '/app/resources' },
+            { text: 'Announcements', icon: <AnnouncementIcon />, path: '/app/announcements' }
         ];
 
         const studentItems = [
-            { text: 'My Exams', icon: <SchoolIcon />, path: '/student/exams' },
-            { text: 'Assessments', icon: <AssignmentIcon />, path: '/student/assessments' },
-            { text: 'Submissions', icon: <FilePresentIcon />, path: '/student/submissions' },
-            { text: 'Results', icon: <AssessmentIcon />, path: '/student/results' },
-            { text: 'Certificates', icon: <EmojiEventsIcon />, path: '/student/certificates' }
+            { text: 'My Exams', icon: <SchoolIcon />, path: '/app/student/exams' },
+            { text: 'Assessments', icon: <AssignmentIcon />, path: '/app/student/assessments' },
+            { text: 'Submissions', icon: <FilePresentIcon />, path: '/app/student/submissions' },
+            { text: 'Results', icon: <AssessmentIcon />, path: '/app/student/results' },
+            { text: 'Certificates', icon: <EmojiEventsIcon />, path: '/app/student/certificates' }
         ];
 
         const teacherItems = [
-            { text: 'Assessments', icon: <AssignmentIcon />, path: '/teacher/assessments' },
-            { text: 'Submissions', icon: <FilePresentIcon />, path: '/teacher/submissions' },
-            { text: 'Grading', icon: <AssessmentIcon />, path: '/teacher/grading' }
+            { text: 'Assessments', icon: <AssignmentIcon />, path: '/app/teacher/assessments' },
+            { text: 'Submissions', icon: <FilePresentIcon />, path: '/app/teacher/submissions' },
+            { text: 'Grading', icon: <AssessmentIcon />, path: '/app/teacher/grading' }
         ];
 
         const adminItems = [
-            { text: 'User Management', icon: <PeopleIcon />, path: '/admin/users' },
-            { text: 'Exam Management', icon: <SchoolIcon />, path: '/admin/exams' },
-            { text: 'Resources', icon: <LibraryBooksIcon />, path: '/admin/resources' },
-            { text: 'Announcements', icon: <AnnouncementIcon />, path: '/admin/announcements' },
-            { text: 'Reports', icon: <BarChartIcon />, path: '/admin/reports' }
+            { text: 'User Management', icon: <PeopleIcon />, path: '/app/admin/users' },
+            { text: 'Exam Management', icon: <SchoolIcon />, path: '/app/admin/exams' },
+            { text: 'Resources', icon: <LibraryBooksIcon />, path: '/app/admin/resources' },
+            { text: 'Announcements', icon: <AnnouncementIcon />, path: '/app/admin/announcements' },
+            { text: 'Reports', icon: <BarChartIcon />, path: '/app/admin/reports' }
         ];
 
         let roleItems = [];
@@ -162,7 +162,7 @@ const MainLayout = () => {
                         open={Boolean(anchorEl)}
                         onClose={handleProfileMenuClose}
                     >
-                        <MenuItem onClick={() => { navigate('/profile'); handleProfileMenuClose(); }}>
+                        <MenuItem onClick={() => { navigate('/app/profile'); handleProfileMenuClose(); }}>
                             <ListItemIcon>
                                 <PersonIcon fontSize="small" />
                             </ListItemIcon>

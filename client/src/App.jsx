@@ -49,7 +49,18 @@ const ProtectedRoute = ({ children, allowedRoles }) => {
     }
 
     if (allowedRoles && !allowedRoles.includes(user?.role)) {
-        return <Navigate to="/dashboard" replace />;
+        return <Navigate to="/app/dashboard" replace />;
+    }
+
+    return children;
+};
+
+// Public Route Component - redirects to dashboard if already logged in
+const PublicRoute = ({ children }) => {
+    const { isAuthenticated } = useAuth();
+
+    if (isAuthenticated) {
+        return <Navigate to="/app/dashboard" replace />;
     }
 
     return children;
@@ -59,20 +70,21 @@ function App() {
     return (
         <Routes>
             {/* Public Routes */}
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
+            <Route path="/register" element={<PublicRoute><Register /></PublicRoute>} />
             <Route path="/verify-certificate" element={<CertificateVerification />} />
 
             {/* Protected Routes */}
             <Route
-                path="/"
+                path="/app"
                 element={
                     <ProtectedRoute>
                         <MainLayout />
                     </ProtectedRoute>
                 }
             >
-                <Route index element={<Navigate to="/dashboard" replace />} />
+                <Route index element={<Navigate to="dashboard" replace />} />
                 <Route path="dashboard" element={<Dashboard />} />
                 <Route path="profile" element={<Profile />} />
                 <Route path="exam-timetable" element={<ExamTimetable />} />
@@ -190,7 +202,7 @@ function App() {
                 />
             </Route>
 
-            {/* 404 Route */}
+            {/* 404 Route - redirect to landing page */}
             <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
     );
