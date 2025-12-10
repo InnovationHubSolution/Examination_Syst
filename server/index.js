@@ -6,6 +6,7 @@ const rateLimit = require('express-rate-limit');
 const dotenv = require('dotenv');
 const http = require('http');
 const socketIo = require('socket.io');
+const config = require('./config/config');
 
 // Load environment variables
 dotenv.config();
@@ -59,7 +60,7 @@ app.use('/api/', limiter);
 app.use('/uploads', express.static('uploads'));
 
 // Database connection
-mongoose.connect(process.env.MONGODB_URI, {
+mongoose.connect(config.database.uri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 })
@@ -124,7 +125,7 @@ app.use((req, res) => {
     });
 });
 
-const PORT = process.env.PORT || 5000;
+const PORT = config.server.port;
 
 server.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
