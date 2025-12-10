@@ -16,7 +16,44 @@ const generateToken = (id) => {
 // @access  Public
 router.post('/register', async (req, res) => {
     try {
-        const { firstName, lastName, email, password, role, studentId, teacherId, school, grade } = req.body;
+        const { 
+            firstName, 
+            lastName, 
+            email, 
+            password, 
+            role, 
+            studentId, 
+            teacherId, 
+            school, 
+            grade,
+            subjects,
+            phoneNumber 
+        } = req.body;
+
+        // Validate required fields
+        if (!firstName || !lastName || !email || !password) {
+            return res.status(400).json({
+                success: false,
+                message: 'Please provide all required fields: firstName, lastName, email, and password'
+            });
+        }
+
+        // Validate email format
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            return res.status(400).json({
+                success: false,
+                message: 'Please provide a valid email address'
+            });
+        }
+
+        // Validate password length
+        if (password.length < 8) {
+            return res.status(400).json({
+                success: false,
+                message: 'Password must be at least 8 characters long'
+            });
+        }
 
         // Check if user exists
         const existingUser = await User.findOne({ email });
@@ -27,8 +64,30 @@ router.post('/register', async (req, res) => {
             });
         }
 
-        // Create user
-        const user = await User.create({
+        // Check if studentId already exists (if provided)
+        if (studentId) {
+            const existingStudent = await User.findOne({ studentId });
+            if (existingStudent) {
+                return res.status(400).json({
+                    success: false,
+                    message: 'Student ID already exists'
+                });
+            }
+        }
+
+        // Check if teacherId already exists (if provided)
+        if (teacherId) {
+            const existingTeacher = await User.findOne({ teacherId });
+            if (existingTeacher) {
+                return res.status(400).json({
+                    success: false,
+                    message: 'Teacher ID already exists'
+                });
+            }
+        }
+
+        // Create user data object
+        const userData = {
             firstName,
             lastName,
             email,
@@ -37,8 +96,17 @@ router.post('/register', async (req, res) => {
             studentId,
             teacherId,
             school,
-            grade
-        });
+            grade,
+            phoneNumber
+        };
+
+        // Add subjects array if provided
+        if (subjects && Array.isArray(subjects)) {
+            userData.subjects = subjects;
+        }
+
+        // Create user
+        const user = await User.create(userData);
 
         // Generate token
         const token = generateToken(user._id);
@@ -52,10 +120,26 @@ router.post('/register', async (req, res) => {
                 firstName: user.firstName,
                 lastName: user.lastName,
                 email: user.email,
-                role: user.role
+                role: user.role,
+                studentId: user.studentId,
+                teacherId: user.teacherId,
+                school: user.school,
+                grade: user.grade,
+                subjects: user.subjects
             }
         });
     } catch (error) {
+        console.error('Registration error:', error);
+        
+        // Handle mongoose validation errors
+        if (error.name === 'ValidationError') {
+            const messages = Object.values(error.errors).map(err => err.message);
+            return res.status(400).json({
+                success: false,
+                message: messages.join(', ')
+            });
+        }
+
         res.status(500).json({
             success: false,
             message: 'Error registering user',

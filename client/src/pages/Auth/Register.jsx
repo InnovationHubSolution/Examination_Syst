@@ -25,8 +25,11 @@ const Register = () => {
         confirmPassword: '',
         role: 'student',
         studentId: '',
+        teacherId: '',
         school: '',
-        grade: ''
+        grade: '',
+        subjects: '',
+        phoneNumber: ''
     });
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
@@ -54,8 +57,15 @@ const Register = () => {
 
         setLoading(true);
 
-        const { confirmPassword, ...registerData } = formData;
-        const result = await register(userData);
+        // Prepare data for registration
+        const { confirmPassword, subjects, ...registerData } = formData;
+        
+        // Convert subjects string to array if role is teacher
+        if (formData.role === 'teacher' && subjects) {
+            registerData.subjects = subjects.split(',').map(s => s.trim()).filter(s => s);
+        }
+
+        const result = await register(registerData);
 
         if (result.success) {
             navigate('/app/dashboard');
@@ -77,7 +87,7 @@ const Register = () => {
                     alignItems: 'center'
                 }}
             >
-                <Paper elevation={3} sx={{ p: 4, width: '100%' }}>
+                <Paper elevation={24} sx={{ p: 4, width: '100%', backgroundColor: 'rgba(255, 255, 255, 0.98)', backdropFilter: 'blur(10px)', borderRadius: 3 }}>
                     <Typography component="h1" variant="h4" align="center" gutterBottom>
                         Create Account
                     </Typography>
@@ -144,6 +154,7 @@ const Register = () => {
                                             name="studentId"
                                             value={formData.studentId}
                                             onChange={handleChange}
+                                            helperText="Optional - Can be assigned later"
                                         />
                                     </Grid>
                                     <Grid item xs={12} sm={6}>
@@ -162,6 +173,52 @@ const Register = () => {
                                             name="grade"
                                             value={formData.grade}
                                             onChange={handleChange}
+                                        />
+                                    </Grid>
+                                </>
+                            )}
+                            {formData.role === 'teacher' && (
+                                <>
+                                    <Grid item xs={12}>
+                                        <TextField
+                                            fullWidth
+                                            label="Teacher ID"
+                                            name="teacherId"
+                                            value={formData.teacherId}
+                                            onChange={handleChange}
+                                            helperText="Optional - Can be assigned later"
+                                        />
+                                    </Grid>
+                                    <Grid item xs={12}>
+                                        <TextField
+                                            fullWidth
+                                            label="School"
+                                            name="school"
+                                            value={formData.school}
+                                            onChange={handleChange}
+                                            helperText="Your current school or institution"
+                                        />
+                                    </Grid>
+                                    <Grid item xs={12}>
+                                        <TextField
+                                            fullWidth
+                                            label="Subjects"
+                                            name="subjects"
+                                            value={formData.subjects}
+                                            onChange={handleChange}
+                                            helperText="Enter subjects separated by commas (e.g., Mathematics, English, Science)"
+                                            multiline
+                                            rows={2}
+                                        />
+                                    </Grid>
+                                    <Grid item xs={12}>
+                                        <TextField
+                                            fullWidth
+                                            label="Phone Number"
+                                            name="phoneNumber"
+                                            value={formData.phoneNumber}
+                                            onChange={handleChange}
+                                            helperText="Contact number for communication"
                                         />
                                     </Grid>
                                 </>
