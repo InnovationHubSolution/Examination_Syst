@@ -94,7 +94,10 @@ const seedUsers = async () => {
             }
         ];
 
-        await User.insertMany(sampleUsers);
+        // Use create instead of insertMany to trigger pre-save hooks for password hashing
+        for (const userData of sampleUsers) {
+            await User.create(userData);
+        }
         console.log('✅ Sample users created successfully');
 
     } catch (error) {
