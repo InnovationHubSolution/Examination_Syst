@@ -1,6 +1,6 @@
-{
+﻿{
     "name": "vanuatu-examination-portal",
-    "version": "1.0.0",
+    "version": "2.0.0",
     "description": "Comprehensive Examination and Assessment Unit Portal for Vanuatu",
     "main": "server/index.js",
     "scripts": {
@@ -9,13 +9,18 @@
         "client": "cd client && npm run dev",
         "build": "cd client && npm run build",
         "start": "node server/index.js",
-        "install-all": "npm install && cd client && npm install"
+        "install-all": "npm install && cd client && npm install",
+        "seed": "node server/config/seeder.js",
+        "seed:clear": "node server/config/seeder.js clear",
+        "db:reset": "npm run seed:clear && npm run seed"
     },
     "keywords": [
         "examination",
         "assessment",
         "education",
-        "vanuatu"
+        "vanuatu",
+        "portal",
+        "e-learning"
     ],
     "author": "Vanuatu Ministry of Education",
     "license": "MIT",
