@@ -31,13 +31,12 @@ const seedUsers = async () => {
             return;
         }
 
-        // Create admin user
-        const hashedPassword = await bcrypt.hash(config.admin.password, 10);
+        // Create admin user (let model's pre-save hook hash the password)
         const admin = await User.create({
             firstName: config.admin.firstName,
             lastName: config.admin.lastName,
             email: config.admin.email,
-            password: hashedPassword,
+            password: config.admin.password,
             role: 'administrator',
             isActive: true,
             emailVerified: true
@@ -45,13 +44,13 @@ const seedUsers = async () => {
 
         console.log('✅ Admin user created:', admin.email);
 
-        // Create sample users for testing
+        // Create sample users for testing (let model hash passwords)
         const sampleUsers = [
             {
                 firstName: 'John',
                 lastName: 'Teacher',
                 email: 'teacher@vanuatu.gov.vu',
-                password: await bcrypt.hash('Teacher123!', 10),
+                password: 'Teacher123!',
                 role: 'teacher',
                 isActive: true,
                 emailVerified: true
@@ -60,7 +59,7 @@ const seedUsers = async () => {
                 firstName: 'Jane',
                 lastName: 'Examiner',
                 email: 'examiner@vanuatu.gov.vu',
-                password: await bcrypt.hash('Examiner123!', 10),
+                password: 'Examiner123!',
                 role: 'examiner',
                 isActive: true,
                 emailVerified: true
@@ -69,7 +68,7 @@ const seedUsers = async () => {
                 firstName: 'Bob',
                 lastName: 'Moderator',
                 email: 'moderator@vanuatu.gov.vu',
-                password: await bcrypt.hash('Moderator123!', 10),
+                password: 'Moderator123!',
                 role: 'moderator',
                 isActive: true,
                 emailVerified: true
@@ -78,7 +77,7 @@ const seedUsers = async () => {
                 firstName: 'Alice',
                 lastName: 'Provincial',
                 email: 'provincial@vanuatu.gov.vu',
-                password: await bcrypt.hash('Provincial123!', 10),
+                password: 'Provincial123!',
                 role: 'provincial_officer',
                 province: 'Shefa',
                 isActive: true,
@@ -88,7 +87,7 @@ const seedUsers = async () => {
                 firstName: 'Mike',
                 lastName: 'Student',
                 email: 'student@vanuatu.gov.vu',
-                password: await bcrypt.hash('Student123!', 10),
+                password: 'Student123!',
                 role: 'student',
                 isActive: true,
                 emailVerified: true
@@ -269,13 +268,13 @@ const seedExamCentres = async () => {
 
 const seed = async () => {
     console.log('🌱 Starting database seeding...\n');
-    
+
     await connectDB();
-    
+
     await seedUsers();
     await seedSchools();
     await seedExamCentres();
-    
+
     console.log('\n✅ Database seeding completed successfully!');
     console.log('\n📋 Default Credentials:');
     console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
@@ -286,21 +285,21 @@ const seed = async () => {
     console.log('Provincial:      provincial@vanuatu.gov.vu / Provincial123!');
     console.log('Student:         student@vanuatu.gov.vu / Student123!');
     console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n');
-    
+
     process.exit(0);
 };
 
 const clearDatabase = async () => {
     console.log('🗑️  Clearing database...\n');
-    
+
     await connectDB();
-    
+
     await User.deleteMany({});
     await School.deleteMany({});
     await ExamCentre.deleteMany({});
-    
+
     console.log('✅ Database cleared successfully!\n');
-    
+
     process.exit(0);
 };
 
