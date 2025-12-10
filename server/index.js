@@ -21,6 +21,11 @@ const resultRoutes = require('./routes/results');
 const certificateRoutes = require('./routes/certificates');
 const announcementRoutes = require('./routes/announcements');
 const reportRoutes = require('./routes/reports');
+const candidateRoutes = require('./routes/candidates');
+const schoolRoutes = require('./routes/schools');
+const examCentreRoutes = require('./routes/examCentres');
+const internalAssessmentRoutes = require('./routes/internalAssessments');
+const nationalStandardRoutes = require('./routes/nationalStandards');
 
 const app = express();
 const server = http.createServer(app);
@@ -78,6 +83,11 @@ app.use('/api/results', resultRoutes);
 app.use('/api/certificates', certificateRoutes);
 app.use('/api/announcements', announcementRoutes);
 app.use('/api/reports', reportRoutes);
+app.use('/api/candidates', candidateRoutes);
+app.use('/api/schools', schoolRoutes);
+app.use('/api/exam-centres', examCentreRoutes);
+app.use('/api/internal-assessments', internalAssessmentRoutes);
+app.use('/api/national-standards', nationalStandardRoutes);
 
 // Health check
 app.get('/api/health', (req, res) => {

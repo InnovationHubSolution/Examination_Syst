@@ -27,7 +27,7 @@ const userSchema = new mongoose.Schema({
   },
   role: {
     type: String,
-    enum: ['student', 'teacher', 'administrator', 'examiner'],
+    enum: ['student', 'teacher', 'administrator', 'examiner', 'moderator', 'school_admin', 'provincial_officer'],
     default: 'student'
   },
   studentId: {
@@ -64,6 +64,10 @@ const userSchema = new mongoose.Schema({
     city: String,
     province: String,
     country: { type: String, default: 'Vanuatu' }
+  },
+  province: {
+    type: String,
+    enum: ['Malampa', 'Penama', 'Sanma', 'Shefa', 'Tafea', 'Torba']
   },
   profileImage: {
     type: String
