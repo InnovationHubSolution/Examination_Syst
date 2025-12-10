@@ -20,7 +20,7 @@ const storage = multer.diskStorage({
         else if (req.baseUrl.includes('certificates')) folder = 'certificates';
         else if (req.baseUrl.includes('candidates')) folder = 'candidates';
         else if (req.baseUrl.includes('internal-assessments')) folder = 'internal-assessments';
-        
+
         // Phase 2 routes
         else if (req.baseUrl.includes('policies')) folder = 'policies';
         else if (req.baseUrl.includes('training')) folder = 'training';

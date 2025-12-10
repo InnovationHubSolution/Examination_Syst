@@ -8,6 +8,7 @@ import MainLayout from './components/Layout/MainLayout';
 // Public Pages
 import Login from './pages/Auth/Login';
 import Register from './pages/Auth/Register';
+import LandingPage from './pages/Landing/LandingPage';
 
 // Common Pages
 import Dashboard from './pages/Dashboard/Dashboard';
@@ -190,9 +191,12 @@ function App() {
             </Route>
 
             {/* 404 Route */}
-            <Route path="*" element={<Navigate to="/dashboard" replace />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
     );
 }
 
 export default App;
+
+
+
