@@ -125,68 +125,85 @@ const seedSchools = async () => {
                 schoolCode: 'VU-SHEFA-001',
                 schoolName: 'Port Vila Secondary School',
                 province: 'Shefa',
-                district: 'Port Vila',
-                address: {
-                    street: 'Main Street',
-                    city: 'Port Vila',
-                    island: 'Efate'
+                island: 'Efate',
+                area: 'Port Vila',
+                address: 'Main Street, Port Vila, Efate',
+                phoneNumber: '+678-22222',
+                email: 'pvss@vanuatu.edu.vu',
+                schoolType: 'Secondary',
+                principal: {
+                    name: 'Principal One',
+                    email: 'principal1@vanuatu.edu.vu',
+                    phone: '+678-22223'
                 },
-                contactInfo: {
-                    phone: '+678-22222',
-                    email: 'pvss@vanuatu.edu.vu'
+                examCoordinator: {
+                    name: 'Coordinator One',
+                    email: 'coord1@vanuatu.edu.vu',
+                    phone: '+678-22224'
                 },
-                schoolType: 'Public',
-                principalName: 'Principal One',
-                studentPopulation: 500,
-                staffCount: 40,
-                facilitiesAvailable: ['Computer Lab', 'Science Lab', 'Library', 'Sports Field'],
-                status: 'active'
+                studentCapacity: 500,
+                examCapacity: 100,
+                facilities: ['Computer Lab', 'Science Lab', 'Library', 'Sports Facilities', 'Internet Access'],
+                isActive: true,
+                isExamCentre: true
             },
             {
                 schoolCode: 'VU-SANMA-001',
                 schoolName: 'Santo Secondary School',
                 province: 'Sanma',
-                district: 'Luganville',
-                address: {
-                    street: 'Unity Park Road',
-                    city: 'Luganville',
-                    island: 'Santo'
+                island: 'Santo',
+                area: 'Luganville',
+                address: 'Unity Park Road, Luganville, Santo',
+                phoneNumber: '+678-33333',
+                email: 'sss@vanuatu.edu.vu',
+                schoolType: 'Secondary',
+                principal: {
+                    name: 'Principal Two',
+                    email: 'principal2@vanuatu.edu.vu',
+                    phone: '+678-33334'
                 },
-                contactInfo: {
-                    phone: '+678-33333',
-                    email: 'sss@vanuatu.edu.vu'
+                examCoordinator: {
+                    name: 'Coordinator Two',
+                    email: 'coord2@vanuatu.edu.vu',
+                    phone: '+678-33335'
                 },
-                schoolType: 'Public',
-                principalName: 'Principal Two',
-                studentPopulation: 400,
-                staffCount: 35,
-                facilitiesAvailable: ['Computer Lab', 'Library', 'Sports Field'],
-                status: 'active'
+                studentCapacity: 400,
+                examCapacity: 80,
+                facilities: ['Computer Lab', 'Library', 'Sports Facilities'],
+                isActive: true,
+                isExamCentre: true
             },
             {
                 schoolCode: 'VU-TAFEA-001',
                 schoolName: 'Tanna Secondary School',
                 province: 'Tafea',
-                district: 'Isangel',
-                address: {
-                    street: 'School Road',
-                    city: 'Isangel',
-                    island: 'Tanna'
+                island: 'Tanna',
+                area: 'Isangel',
+                address: 'School Road, Isangel, Tanna',
+                phoneNumber: '+678-44444',
+                email: 'tss@vanuatu.edu.vu',
+                schoolType: 'Secondary',
+                principal: {
+                    name: 'Principal Three',
+                    email: 'principal3@vanuatu.edu.vu',
+                    phone: '+678-44445'
                 },
-                contactInfo: {
-                    phone: '+678-44444',
-                    email: 'tss@vanuatu.edu.vu'
+                examCoordinator: {
+                    name: 'Coordinator Three',
+                    email: 'coord3@vanuatu.edu.vu',
+                    phone: '+678-44446'
                 },
-                schoolType: 'Public',
-                principalName: 'Principal Three',
-                studentPopulation: 300,
-                staffCount: 25,
-                facilitiesAvailable: ['Library', 'Sports Field'],
-                status: 'active'
+                studentCapacity: 300,
+                examCapacity: 60,
+                facilities: ['Library', 'Sports Facilities'],
+                isActive: true,
+                isExamCentre: false
             }
         ];
 
-        await School.insertMany(schools);
+        for (const schoolData of schools) {
+            await School.create(schoolData);
+        }
         console.log('✅ Sample schools created successfully');
 
     } catch (error) {
@@ -215,15 +232,18 @@ const seedExamCentres = async () => {
                 centreName: 'Port Vila Examination Centre',
                 school: schools[0]._id,
                 province: 'Shefa',
+                address: 'Main Street, Port Vila, Efate',
+                phoneNumber: '+678-55555',
+                email: 'exam.centre1@vanuatu.gov.vu',
                 capacity: {
                     totalSeats: 300,
                     regularSeats: 280,
                     specialNeedsSeats: 20
                 },
-                facilities: ['Wheelchair Access', 'Special Needs Room', 'CCTV', 'Generator'],
+                facilities: ['Wheelchair Access', 'Special Needs Room', 'CCTV', 'Backup Generator'],
                 centreSupervisor: {
                     name: 'Supervisor One',
-                    phone: '+678-55555',
+                    phone: '+678-55556',
                     email: 'supervisor1@vanuatu.gov.vu',
                     qualifications: 'Bachelor of Education'
                 },
@@ -236,22 +256,26 @@ const seedExamCentres = async () => {
                         trainingCompleted: true
                     }
                 ],
-                status: 'active'
+                isActive: true,
+                isApproved: true
             },
             {
                 centreCode: 'VU-SANMA-EC001',
                 centreName: 'Santo Examination Centre',
                 school: schools[1]._id,
                 province: 'Sanma',
+                address: 'Unity Park Road, Luganville, Santo',
+                phoneNumber: '+678-77777',
+                email: 'exam.centre2@vanuatu.gov.vu',
                 capacity: {
                     totalSeats: 250,
                     regularSeats: 240,
                     specialNeedsSeats: 10
                 },
-                facilities: ['Wheelchair Access', 'CCTV', 'Generator'],
+                facilities: ['Wheelchair Access', 'CCTV', 'Backup Generator'],
                 centreSupervisor: {
                     name: 'Supervisor Two',
-                    phone: '+678-77777',
+                    phone: '+678-77778',
                     email: 'supervisor2@vanuatu.gov.vu',
                     qualifications: 'Bachelor of Education'
                 },
@@ -264,11 +288,14 @@ const seedExamCentres = async () => {
                         trainingCompleted: true
                     }
                 ],
-                status: 'active'
+                isActive: true,
+                isApproved: true
             }
         ];
 
-        await ExamCentre.insertMany(examCentres);
+        for (const centreData of examCentres) {
+            await ExamCentre.create(centreData);
+        }
         console.log('✅ Sample exam centres created successfully');
 
     } catch (error) {
@@ -503,8 +530,15 @@ const seedAnnouncements = async () => {
 const seedCandidates = async () => {
     try {
         const schools = await School.find();
+        const admin = await User.findOne({ role: 'administrator' });
+        
         if (schools.length === 0) {
             console.log('No schools found. Skipping candidate seeding.');
+            return;
+        }
+        
+        if (!admin) {
+            console.log('No admin user found. Skipping candidate seeding.');
             return;
         }
 
@@ -527,8 +561,9 @@ const seedCandidates = async () => {
                     { subject: 'Science', level: 'Advanced' }
                 ],
                 specialNeeds: { hasSpecialNeeds: false },
-                registrationStatus: 'confirmed',
-                registrationDate: new Date('2025-01-15')
+                registrationStatus: 'approved',
+                registrationDate: new Date('2025-01-15'),
+                createdBy: admin._id
             },
             {
                 candidateId: 'CAND-2025-002',
@@ -548,8 +583,9 @@ const seedCandidates = async () => {
                     { subject: 'History', level: 'Standard' }
                 ],
                 specialNeeds: { hasSpecialNeeds: false },
-                registrationStatus: 'confirmed',
-                registrationDate: new Date('2025-01-20')
+                registrationStatus: 'verified',
+                registrationDate: new Date('2025-01-20'),
+                createdBy: admin._id
             },
             {
                 candidateId: 'CAND-2025-003',
@@ -569,12 +605,15 @@ const seedCandidates = async () => {
                     { subject: 'English', level: 'Foundation' }
                 ],
                 specialNeeds: { hasSpecialNeeds: false },
-                registrationStatus: 'confirmed',
-                registrationDate: new Date('2025-02-01')
+                registrationStatus: 'submitted',
+                registrationDate: new Date('2025-02-01'),
+                createdBy: admin._id
             }
         ];
 
-        await Candidate.insertMany(candidates);
+        for (const candidateData of candidates) {
+            await Candidate.create(candidateData);
+        }
         console.log('✅ Sample candidates created successfully');
     } catch (error) {
         console.error('Error seeding candidates:', error);
