@@ -531,12 +531,12 @@ const seedCandidates = async () => {
     try {
         const schools = await School.find();
         const admin = await User.findOne({ role: 'administrator' });
-        
+
         if (schools.length === 0) {
             console.log('No schools found. Skipping candidate seeding.');
             return;
         }
-        
+
         if (!admin) {
             console.log('No admin user found. Skipping candidate seeding.');
             return;
