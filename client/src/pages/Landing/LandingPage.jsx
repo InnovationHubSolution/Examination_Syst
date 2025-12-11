@@ -12,12 +12,12 @@ import {
     Toolbar,
     Stack
 } from '@mui/material';
-import { 
-    BookOpen, 
-    Users, 
-    Award, 
-    FileText, 
-    Shield, 
+import {
+    BookOpen,
+    Users,
+    Award,
+    FileText,
+    Shield,
     TrendingUp,
     CheckCircle,
     Globe
@@ -81,10 +81,10 @@ const LandingPage = () => {
     return (
         <Box>
             {/* Header */}
-            <AppBar 
-                position="static" 
-                sx={{ 
-                    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+            <AppBar
+                position="static"
+                sx={{
+                    background: 'linear-gradient(135deg, #F5A623 0%, #E8902E 50%, #2B6F9E 100%)',
                     boxShadow: 3
                 }}
             >
@@ -109,17 +109,17 @@ const LandingPage = () => {
                             Vanuatu Examination Portal
                         </Typography>
                     </Box>
-                    <Button 
-                        color="inherit" 
+                    <Button
+                        color="inherit"
                         onClick={() => navigate('/login')}
                         sx={{ mr: 1 }}
                     >
                         Login
                     </Button>
-                    <Button 
-                        variant="outlined" 
-                        sx={{ 
-                            color: 'white', 
+                    <Button
+                        variant="outlined"
+                        sx={{
+                            color: 'white',
                             borderColor: 'white',
                             '&:hover': {
                                 borderColor: 'white',
@@ -136,7 +136,7 @@ const LandingPage = () => {
             {/* Hero Section */}
             <Box
                 sx={{
-                    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                    background: 'linear-gradient(135deg, #F5A623 0%, #E8902E 50%, #2B6F9E 100%)',
                     color: 'white',
                     py: 12,
                     position: 'relative',
@@ -155,10 +155,10 @@ const LandingPage = () => {
             >
                 <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
                     <Box sx={{ textAlign: 'center', mb: 6 }}>
-                        <Typography 
-                            variant="h2" 
-                            component="h1" 
-                            gutterBottom 
+                        <Typography
+                            variant="h2"
+                            component="h1"
+                            gutterBottom
                             fontWeight="bold"
                             sx={{ mb: 3 }}
                         >
@@ -168,19 +168,19 @@ const LandingPage = () => {
                             Transforming Education Through Digital Excellence
                         </Typography>
                         <Typography variant="h6" sx={{ mb: 5, opacity: 0.85, maxWidth: 800, mx: 'auto' }}>
-                            A comprehensive digital platform for managing national examinations, 
+                            A comprehensive digital platform for managing national examinations,
                             assessments, and academic records across the Republic of Vanuatu
                         </Typography>
                         <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} justifyContent="center">
-                            <Button 
-                                variant="contained" 
+                            <Button
+                                variant="contained"
                                 size="large"
                                 onClick={() => navigate('/login')}
-                                sx={{ 
+                                sx={{
                                     py: 1.5,
                                     px: 4,
                                     backgroundColor: 'white',
-                                    color: '#667eea',
+                                    color: '#2B6F9E',
                                     fontWeight: 'bold',
                                     '&:hover': {
                                         backgroundColor: 'rgba(255, 255, 255, 0.9)'
@@ -189,11 +189,11 @@ const LandingPage = () => {
                             >
                                 Get Started
                             </Button>
-                            <Button 
-                                variant="outlined" 
+                            <Button
+                                variant="outlined"
                                 size="large"
                                 onClick={() => navigate('/verify-certificate')}
-                                sx={{ 
+                                sx={{
                                     py: 1.5,
                                     px: 4,
                                     borderColor: 'white',
@@ -248,8 +248,8 @@ const LandingPage = () => {
                 <Grid container spacing={4}>
                     {features.map((feature, index) => (
                         <Grid item xs={12} sm={6} md={4} key={index}>
-                            <Card 
-                                sx={{ 
+                            <Card
+                                sx={{
                                     height: '100%',
                                     transition: 'transform 0.3s, box-shadow 0.3s',
                                     '&:hover': {
@@ -259,9 +259,9 @@ const LandingPage = () => {
                                 }}
                             >
                                 <CardContent sx={{ textAlign: 'center', p: 4 }}>
-                                    <Box 
-                                        sx={{ 
-                                            color: '#667eea',
+                                    <Box
+                                        sx={{
+                                            color: '#3D9A9B',
                                             mb: 2,
                                             display: 'flex',
                                             justifyContent: 'center'
@@ -304,10 +304,10 @@ const LandingPage = () => {
                                         </Typography>
                                         <Box component="ul" sx={{ pl: 2, mt: 2 }}>
                                             {userType.benefits.map((benefit, i) => (
-                                                <Box 
-                                                    component="li" 
+                                                <Box
+                                                    component="li"
                                                     key={i}
-                                                    sx={{ 
+                                                    sx={{
                                                         display: 'flex',
                                                         alignItems: 'flex-start',
                                                         mb: 1,
@@ -315,14 +315,14 @@ const LandingPage = () => {
                                                         ml: -2
                                                     }}
                                                 >
-                                                    <CheckCircle 
-                                                        size={18} 
-                                                        style={{ 
-                                                            color: '#4caf50',
+                                                    <CheckCircle
+                                                        size={18}
+                                                        style={{
+                                                            color: '#F5A623',
                                                             marginRight: 8,
                                                             marginTop: 2,
                                                             flexShrink: 0
-                                                        }} 
+                                                        }}
                                                     />
                                                     <Typography variant="body2">
                                                         {benefit}
@@ -341,7 +341,7 @@ const LandingPage = () => {
             {/* CTA Section */}
             <Box
                 sx={{
-                    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                    background: 'linear-gradient(135deg, #2B6F9E 0%, #3D9A9B 100%)',
                     color: 'white',
                     py: 10,
                     textAlign: 'center'
@@ -356,11 +356,11 @@ const LandingPage = () => {
                         Join thousands of students, teachers, and administrators using the Vanuatu Examination Portal
                     </Typography>
                     <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} justifyContent="center">
-                        <Button 
-                            variant="contained" 
+                        <Button
+                            variant="contained"
                             size="large"
                             onClick={() => navigate('/register')}
-                            sx={{ 
+                            sx={{
                                 py: 1.5,
                                 px: 4,
                                 backgroundColor: 'white',
@@ -373,11 +373,11 @@ const LandingPage = () => {
                         >
                             Create Account
                         </Button>
-                        <Button 
-                            variant="outlined" 
+                        <Button
+                            variant="outlined"
                             size="large"
                             onClick={() => navigate('/login')}
-                            sx={{ 
+                            sx={{
                                 py: 1.5,
                                 px: 4,
                                 borderColor: 'white',

@@ -59,7 +59,7 @@ const Register = () => {
 
         // Prepare data for registration
         const { confirmPassword, subjects, ...registerData } = formData;
-        
+
         // Convert subjects string to array if role is teacher
         if (formData.role === 'teacher' && subjects) {
             registerData.subjects = subjects.split(',').map(s => s.trim()).filter(s => s);

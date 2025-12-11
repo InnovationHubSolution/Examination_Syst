@@ -21,6 +21,8 @@ import StudentResources from './pages/Student/Resources';
 import StudentSubmissions from './pages/Student/Submissions';
 import StudentResults from './pages/Student/Results';
 import StudentCertificates from './pages/Student/Certificates';
+import StudentProfile from './pages/Student/StudentProfile';
+import PostGraduateApplication from './pages/Student/PostGraduateApplication';
 
 // Teacher Pages
 import TeacherAssessments from './pages/Teacher/Assessments';
@@ -33,6 +35,7 @@ import ExamManagement from './pages/Admin/ExamManagement';
 import ResourceManagement from './pages/Admin/ResourceManagement';
 import Announcements from './pages/Admin/Announcements';
 import Reports from './pages/Admin/Reports';
+import ScholarshipManagement from './pages/Admin/ScholarshipManagement';
 
 // Shared Pages
 import ExamTimetable from './pages/Shared/ExamTimetable';
@@ -132,6 +135,22 @@ function App() {
                         </ProtectedRoute>
                     }
                 />
+                <Route
+                    path="student/profile"
+                    element={
+                        <ProtectedRoute allowedRoles={['student']}>
+                            <StudentProfile />
+                        </ProtectedRoute>
+                    }
+                />
+                <Route
+                    path="student/postgraduate/apply"
+                    element={
+                        <ProtectedRoute allowedRoles={['student']}>
+                            <PostGraduateApplication />
+                        </ProtectedRoute>
+                    }
+                />
 
                 {/* Teacher Routes */}
                 <Route
@@ -197,6 +216,14 @@ function App() {
                     element={
                         <ProtectedRoute allowedRoles={['administrator', 'teacher']}>
                             <Reports />
+                        </ProtectedRoute>
+                    }
+                />
+                <Route
+                    path="admin/scholarships"
+                    element={
+                        <ProtectedRoute allowedRoles={['administrator']}>
+                            <ScholarshipManagement />
                         </ProtectedRoute>
                     }
                 />

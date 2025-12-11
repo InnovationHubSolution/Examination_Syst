@@ -16,18 +16,18 @@ const generateToken = (id) => {
 // @access  Public
 router.post('/register', async (req, res) => {
     try {
-        const { 
-            firstName, 
-            lastName, 
-            email, 
-            password, 
-            role, 
-            studentId, 
-            teacherId, 
-            school, 
+        const {
+            firstName,
+            lastName,
+            email,
+            password,
+            role,
+            studentId,
+            teacherId,
+            school,
             grade,
             subjects,
-            phoneNumber 
+            phoneNumber
         } = req.body;
 
         // Validate required fields
@@ -130,7 +130,7 @@ router.post('/register', async (req, res) => {
         });
     } catch (error) {
         console.error('Registration error:', error);
-        
+
         // Handle mongoose validation errors
         if (error.name === 'ValidationError') {
             const messages = Object.values(error.errors).map(err => err.message);

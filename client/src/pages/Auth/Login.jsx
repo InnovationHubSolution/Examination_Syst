@@ -74,10 +74,10 @@ const Login = () => {
                         alignItems: 'center'
                     }}
                 >
-                    <Paper 
-                        elevation={24} 
-                        sx={{ 
-                            p: 4, 
+                    <Paper
+                        elevation={24}
+                        sx={{
+                            p: 4,
                             width: '100%',
                             backgroundColor: 'rgba(255, 255, 255, 0.98)',
                             backdropFilter: 'blur(10px)',
@@ -100,7 +100,7 @@ const Login = () => {
                                     fontWeight: 'bold'
                                 }}
                             >
-                                
+
                             </Box>
                             <Typography component="h1" variant="h4" fontWeight="bold" gutterBottom>
                                 Vanuatu Examination Portal
@@ -159,8 +159,8 @@ const Login = () => {
                                 type="submit"
                                 fullWidth
                                 variant="contained"
-                                sx={{ 
-                                    mt: 3, 
+                                sx={{
+                                    mt: 3,
                                     mb: 2,
                                     py: 1.5,
                                     background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',

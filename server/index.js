@@ -33,6 +33,13 @@ const studentGuideRoutes = require('./routes/studentGuides');
 const securityIncidentRoutes = require('./routes/securityIncidents');
 const supportRoutes = require('./routes/support');
 const researchRoutes = require('./routes/research');
+const studentRoutes = require('./routes/students');
+const scholarshipRoutes = require('./routes/scholarships');
+const spfscRoutes = require('./routes/spfsc');
+const daeuRoutes = require('./routes/daeu');
+const overseasRoutes = require('./routes/overseas');
+const uspFoundationRoutes = require('./routes/uspfoundation');
+const postgraduateRoutes = require('./routes/postgraduate');
 
 const app = express();
 const server = http.createServer(app);
@@ -101,6 +108,13 @@ app.use('/api/student-guides', studentGuideRoutes);
 app.use('/api/security-incidents', securityIncidentRoutes);
 app.use('/api/support', supportRoutes);
 app.use('/api/research', researchRoutes);
+app.use('/api/students', studentRoutes);
+app.use('/api/scholarships', scholarshipRoutes);
+app.use('/api/spfsc', spfscRoutes);
+app.use('/api/daeu', daeuRoutes);
+app.use('/api/overseas', overseasRoutes);
+app.use('/api/usp-foundation', uspFoundationRoutes);
+app.use('/api/postgraduate', postgraduateRoutes);
 
 // Health check
 app.get('/api/health', (req, res) => {

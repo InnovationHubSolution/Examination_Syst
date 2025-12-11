@@ -148,10 +148,25 @@ const MainLayout = () => {
                 position="fixed"
                 sx={{
                     width: { sm: `calc(100% - ${drawerWidth}px)` },
-                    ml: { sm: `${drawerWidth}px` }
+                    ml: { sm: `${drawerWidth}px` },
+                    backgroundImage: 'url(/veo-header-bg.jpg)',
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    backgroundRepeat: 'no-repeat',
+                    boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
+                    '&::before': {
+                        content: '""',
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        backgroundColor: 'rgba(61, 154, 155, 0.15)',
+                        zIndex: 0
+                    }
                 }}
             >
-                <Toolbar>
+                <Toolbar sx={{ position: 'relative', zIndex: 1 }}>
                     <IconButton
                         color="inherit"
                         edge="start"

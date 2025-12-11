@@ -16,7 +16,8 @@ import {
     TableRow,
     Chip,
     IconButton,
-    LinearProgress
+    LinearProgress,
+    CircularProgress
 } from '@mui/material';
 import {
     People as PeopleIcon,
@@ -87,12 +88,13 @@ const AdminDashboard = () => {
     const fetchDashboardData = async () => {
         try {
             const response = await axios.get('/api/reports/dashboard');
+            console.log('Dashboard API response:', response.data);
             if (response.data.stats) {
                 setStats({
                     totalUsers: response.data.stats.users?.total || 0,
                     totalExams: response.data.stats.exams?.total || 0,
                     totalSubmissions: response.data.stats.submissions?.total || 0,
-                    activeResources: response.data.stats.resources?.active || 0,
+                    activeResources: response.data.stats.results?.total || 0,
                     students: response.data.stats.users?.students || 0,
                     teachers: response.data.stats.users?.teachers || 0,
                     pendingReviews: response.data.stats.submissions?.pending || 0
@@ -100,10 +102,20 @@ const AdminDashboard = () => {
             }
         } catch (error) {
             console.error('Error fetching dashboard data:', error);
+            // Still set loading to false even on error
+            setLoading(false);
         } finally {
             setLoading(false);
         }
     };
+
+    if (loading) {
+        return (
+            <Container maxWidth="xl" sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '60vh' }}>
+                <CircularProgress />
+            </Container>
+        );
+    }
 
     return (
         <Container maxWidth="xl">
