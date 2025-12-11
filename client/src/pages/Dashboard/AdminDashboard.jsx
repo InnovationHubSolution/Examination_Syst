@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+﻿import React, { useEffect, useState } from 'react';
 import {
     Container,
     Grid,
@@ -31,7 +31,7 @@ import {
 } from '@mui/icons-material';
 import { useAuth } from '../../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import axios from '../../config/axios';
 
 const StatCard = ({ title, value, icon, color, subtitle, change }) => (
     <Card sx={{ height: '100%', background: `linear-gradient(135deg, ${color} 0%, ${color}dd 100%)` }}>
@@ -123,7 +123,7 @@ const AdminDashboard = () => {
                 <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
                     <Box>
                         <Typography variant="h4" gutterBottom sx={{ fontWeight: 'bold' }}>
-                            Administrator Dashboard 🎯
+                            Administrator Dashboard ðŸŽ¯
                         </Typography>
                         <Typography variant="body1" color="text.secondary">
                             System overview and management
@@ -188,7 +188,7 @@ const AdminDashboard = () => {
                 <Grid item xs={12} md={8}>
                     <Paper sx={{ p: 3, mb: 3 }}>
                         <Typography variant="h6" gutterBottom sx={{ fontWeight: 'bold' }}>
-                            ⚙️ System Management
+                            âš™ï¸ System Management
                         </Typography>
                         <Grid container spacing={2} sx={{ mt: 1 }}>
                             <Grid item xs={12} sm={6} md={4}>
@@ -251,7 +251,7 @@ const AdminDashboard = () => {
 
                     <Paper sx={{ p: 3 }}>
                         <Typography variant="h6" gutterBottom sx={{ fontWeight: 'bold' }}>
-                            📊 System Activity
+                            ðŸ“Š System Activity
                         </Typography>
                         <TableContainer>
                             <Table>
@@ -337,7 +337,7 @@ const AdminDashboard = () => {
                 <Grid item xs={12} md={4}>
                     <Paper sx={{ p: 3, mb: 3 }}>
                         <Typography variant="h6" gutterBottom sx={{ fontWeight: 'bold' }}>
-                            🔔 System Notifications
+                            ðŸ”” System Notifications
                         </Typography>
                         <Box sx={{ mt: 2 }}>
                             <Box sx={{ mb: 2, p: 2, bgcolor: 'info.lighter', borderRadius: 1 }}>
@@ -369,7 +369,7 @@ const AdminDashboard = () => {
 
                     <Paper sx={{ p: 3 }}>
                         <Typography variant="h6" gutterBottom sx={{ fontWeight: 'bold' }}>
-                            📈 Performance
+                            ðŸ“ˆ Performance
                         </Typography>
                         <Box sx={{ mt: 2 }}>
                             <Box sx={{ mb: 2 }}>
@@ -423,3 +423,4 @@ const AdminDashboard = () => {
 };
 
 export default AdminDashboard;
+

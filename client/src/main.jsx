@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
@@ -7,6 +7,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import App from './App';
+import ErrorBoundary from './components/ErrorBoundary';
 import { AuthProvider } from './contexts/AuthContext';
 
 const queryClient = new QueryClient({
@@ -49,7 +50,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             <BrowserRouter>
                 <ThemeProvider theme={theme}>
                     <CssBaseline />
-                    <AuthProvider>
+                    <ErrorBoundary>
+                        <AuthProvider>
                         <App />
                         <ToastContainer
                             position="top-right"
@@ -63,8 +65,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
                             pauseOnHover
                         />
                     </AuthProvider>
+                        </ErrorBoundary>
                 </ThemeProvider>
             </BrowserRouter>
         </QueryClientProvider>
     </React.StrictMode>
 );
+

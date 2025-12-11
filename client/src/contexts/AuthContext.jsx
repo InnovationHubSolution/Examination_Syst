@@ -1,5 +1,5 @@
 ﻿import React, { createContext, useState, useContext, useEffect } from 'react';
-import axios from 'axios';
+import axios from '../config/axios';
 import { jwtDecode } from 'jwt-decode';
 import { toast } from 'react-toastify';
 
@@ -129,3 +129,4 @@ export const AuthProvider = ({ children }) => {
 
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
+
